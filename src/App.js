@@ -1,25 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+//Import bootstrap components
+import 'bootstrap/dist/css/bootstrap.min.css';
+//Import components
+
+import Login from './components/Login';
+import LoginVeterinarios from './components/LoginVeterinarios';
+import Carousel from './components/Carousel';
+import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import logo from './logo.png';
+
+
 
 function App() {
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className="App"> 
+ 
+
+    <Dashboard/>
+      <Row>   
+        <Col><img src={logo} className="App-logo1"/></Col>
+      </Row>
+      <Row>
+      <Carousel/>
+      </Row>    
+      <Row>
+      <Col><LoginVeterinarios/></Col>
+      <Col><Login/></Col>
+      </Row>
+      <Footer/>
+
+     
+        </div>
+
+);
 }
 
 export default App;
