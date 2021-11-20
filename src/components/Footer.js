@@ -13,13 +13,34 @@ const Footer = () => {
 
 <div className="App-footer">
     <div className="card-body">
-        <Container>
+        <Container className='footer-container'>
           <Row>
-            <Col xs>First, but unordered</Col>
-            <Col xs={{ order: 12 }}>Second, but last</Col>
-            <Col xs={{ order: 1 }}>Third, but second</Col>
+            <Col >Misión Tic 2021 - Copyright: PetVaccine www.petvaccine.com- info@petvaccine.com</Col>
+            <Col >
+            <img
+              alt="fb-icon"
+              src="https://img.icons8.com/color/96/000000/facebook.png"
+              width="70px"
+              height="auto"
+            />{' '}
+            <img
+              alt="ig-icon"
+              src="https://img.icons8.com/color/96/000000/instagram-new--v1.png"
+              width="70px"
+              height="auto"
+            />{' '}
+            <img
+              alt=""
+              src="https://img.icons8.com/color/96/000000/whatsapp--v1.png"
+              width="70px"
+              height="auto"
+            />{' '}
+            </Col>
           </Row>
         </Container>
+        <a className="iconcredits" href="https://icons8.com/icon/13912/facebook">Facebook icon by Icons8</a>{' '}
+        <a className="iconcredits" href="https://icons8.com/icon/32323/instagram">Instagram icon by Icons8</a>{' '}
+        <a className="iconcredits" href="https://icons8.com/icon/16713/whatsapp">WhatsApp icon by Icons8</a>
     </div>
 </div>
 

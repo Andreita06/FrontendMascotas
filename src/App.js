@@ -11,35 +11,35 @@ import Footer from './components/Footer';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import logo from './logo.png';
+import Logo from './components/Logo';
 
 
 
 function App() {
 
-  
+
 
   return (
-    <div className="App"> 
- 
+    <div className="App">
 
-    <Dashboard/>
-      <Row>   
-        <Col><img src={logo} className="App-logo1"/></Col>
-      </Row>
-      <Row>
-      <Carousel/>
-      </Row>    
-      <Row>
-      <Col><LoginVeterinarios/></Col>
-      <Col><Login/></Col>
-      </Row>
-      <Footer/>
 
-     
-        </div>
+      <Dashboard />
+      <Logo />
 
-);
+      <Carousel />
+      <Container>
+        <Row >
+          <Col ><LoginVeterinarios /></Col>
+          <Col ><Login /></Col>
+        </Row>
+      </Container>
+
+      <Footer />
+
+
+    </div>
+
+  );
 }
 
 export default App;

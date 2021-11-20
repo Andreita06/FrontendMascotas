@@ -4,17 +4,35 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 import logo from '../logo-veterinarios.png';
+import { Accordion, useAccordionButton } from 'react-bootstrap'
 
-const LoginVeterinarios = ({hanleAuth}) => {
+
+
+function CustomToggleVet({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+        console.log('totally custom!'),
+    );
+
+    return (
+        <Button
+        variant="link"
+            onClick={decoratedOnClick}
+        >
+            {children}
+        </Button>
+    );
+}
+
+const LoginVeterinarios = ({ hanleAuth }) => {
 
     const [user2, setUser] = useState(null);
     const [password2, setPassword] = useState(null);
 
-    const handleUser = (e)=>{
+    const handleUser = (e) => {
         setUser(e.target.value);
     }
 
-    const handlePassword = (e)=>{
+    const handlePassword = (e) => {
         setPassword(e.target.value);
     }
 
@@ -29,29 +47,33 @@ const LoginVeterinarios = ({hanleAuth}) => {
     return (
         <>
             <header className="App-header">
-                <Card border="dark" style={{ width: '25rem' }}>
-                    <Card.Header>
-                        <img src={logo} className="App-logo"/>
-                        
-                    </Card.Header>
-                    <Card.Body>
-                        {/*------Usuario------*/}
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text>Usuario</InputGroup.Text>
-                            <FormControl value={user2} name="user" onChange={handleUser} aria-label="First name" />
-                        </InputGroup>
-                        {/*------Password------*/}
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text>Password</InputGroup.Text>
-                            <FormControl value={password2} name="password" onChange={handlePassword} type="password" aria-label="First name" />
-                        </InputGroup>
-                        {/*------Botón de iniciar sesión------*/}
-                        <Button variant="dark" onClick={btnLogin}>Iniciar Sesión</Button>{' '}
+                <Accordion>
+                    <Card border="dark" style={{ width: '30rem' }}>
+                        <Card.Header>
+                            <CustomToggleVet eventKey="1"><img src={logo} className="App-logo"/></CustomToggleVet>
 
-                         {/*------Botón Registrase------*/}
-                         <Button variant="dark" onClick={btnRegistrarse}> Registrarse </Button>{' '}
-                    </Card.Body>
-                </Card>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="1">
+                            <Card.Body>
+                                {/*------Usuario------*/}
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Text>Usuario</InputGroup.Text>
+                                    <FormControl value={user2} name="user" onChange={handleUser} aria-label="First name" />
+                                </InputGroup>
+                                {/*------Password------*/}
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Text>Password</InputGroup.Text>
+                                    <FormControl value={password2} name="password" onChange={handlePassword} type="password" aria-label="First name" />
+                                </InputGroup>
+                                {/*------Botón de iniciar sesión------*/}
+                                <Button variant="dark" onClick={btnLogin}>Iniciar Sesión</Button>{' '}
+
+                                {/*------Botón Registrase------*/}
+                                <Button variant="dark" onClick={btnRegistrarse}> Registrarse </Button>{' '}
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
             </header>
         </>
     )
