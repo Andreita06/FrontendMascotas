@@ -8,6 +8,13 @@
   align-items: center;
   justify-content: center;
 }
+.logomodal{
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  
+}
 
 .App-logo1 {
   height: 40vmin;
@@ -70,6 +77,14 @@
   font-Family :"Arial Rounded MT Bold";
 }
 
+.forminput{
+  margin:5%;
+}
+.forminputpass{
+  margin:5%;
+  border: #282c34;
+  font-weight: 600;
+}
 
 .iconcredits{
   font-size: x-small;

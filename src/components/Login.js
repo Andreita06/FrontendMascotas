@@ -2,9 +2,10 @@ import Card from 'react-bootstrap/Card'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import logo from '../logo-clientes.png';
-import { Accordion, useAccordionButton } from 'react-bootstrap'
+import { Accordion, Modal, useAccordionButton } from 'react-bootstrap'
+import RegisterClient from './RegisterClient'
 
 
 
@@ -15,7 +16,7 @@ function CustomToggle({ children, eventKey }) {
 
     return (
         <Button
-        variant="link"
+            variant="link"
             onClick={decoratedOnClick}
         >
             {children}
@@ -45,6 +46,11 @@ const Login = ({ hanleAuth }) => {
         hanleAuth(user, password);
     }
 
+    // Estados para el uso del modal
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <>
 
@@ -70,13 +76,28 @@ const Login = ({ hanleAuth }) => {
                                 <Button variant="dark" onClick={btnLogin}> Iniciar Sesión </Button>{' '}
 
                                 {/*------Botón Registrase------*/}
-                                <Button variant="dark" onClick={btnRegistrarse}> Registrarse </Button>{' '}
+                                <Button variant="dark" onClick={handleShow}> Registrarse </Button>{' '}
 
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
             </header>
+            {/* Modal que carga formulario de registro */}
+            <Modal show={show} onHide={handleClose} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>Registro Clientes</Modal.Title>
+                </Modal.Header>
+                <Modal.Body><RegisterClient/></Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cerrar
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Enviar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

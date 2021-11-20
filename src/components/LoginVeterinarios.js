@@ -4,7 +4,8 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
 import logo from '../logo-veterinarios.png';
-import { Accordion, useAccordionButton } from 'react-bootstrap'
+import { Accordion, Modal, useAccordionButton } from 'react-bootstrap'
+import RegisterVet from './RegisterVet'
 
 
 
@@ -44,6 +45,12 @@ const LoginVeterinarios = ({ hanleAuth }) => {
         hanleAuth(user2, password2);
     }
 
+      // Estados para el uso del modal
+      const [show, setShow] = useState(false);
+
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
+
     return (
         <>
             <header className="App-header">
@@ -69,12 +76,27 @@ const LoginVeterinarios = ({ hanleAuth }) => {
                                 <Button variant="dark" onClick={btnLogin}>Iniciar Sesión</Button>{' '}
 
                                 {/*------Botón Registrase------*/}
-                                <Button variant="dark" onClick={btnRegistrarse}> Registrarse </Button>{' '}
+                                <Button variant="dark" onClick={handleShow}> Registrarse </Button>{' '}
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
             </header>
+            {/* Modal que carga formulario de registro */}
+            <Modal show={show} onHide={handleClose} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>Registro Clientes</Modal.Title>
+                </Modal.Header>
+                <Modal.Body><RegisterVet/></Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cerrar
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Enviar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }
