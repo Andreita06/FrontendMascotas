@@ -2,10 +2,11 @@ import Card from 'react-bootstrap/Card'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import logo from '../logo-veterinarios.png';
 import { Accordion, Modal, useAccordionButton } from 'react-bootstrap'
 import RegisterVet from './RegisterVet'
+import AuthContext from '../context/AuthContext'
 
 
 
@@ -16,7 +17,7 @@ function CustomToggleVet({ children, eventKey }) {
 
     return (
         <Button
-        variant="link"
+            variant="link"
             onClick={decoratedOnClick}
         >
             {children}
@@ -24,7 +25,10 @@ function CustomToggleVet({ children, eventKey }) {
     );
 }
 
-const LoginVeterinarios = ({ hanleAuth }) => {
+const LoginVeterinarios = () => {
+    //uso de contexto
+    const { handleAuth } = useContext(AuthContext);
+    //usar el hook useState para estados del componente
 
     const [user2, setUser] = useState(null);
     const [password2, setPassword] = useState(null);
@@ -38,18 +42,18 @@ const LoginVeterinarios = ({ hanleAuth }) => {
     }
 
     const btnLogin = () => {
-        hanleAuth(user2, password2);
+        // handleAuth(user2, password2);
     }
 
     const btnRegistrarse = () => {
-        hanleAuth(user2, password2);
+        // handleAuth(user2, password2);
     }
 
-      // Estados para el uso del modal
-      const [show, setShow] = useState(false);
+    // Estados para el uso del modal
+    const [show, setShow] = useState(false);
 
-      const handleClose = () => setShow(false);
-      const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
@@ -57,7 +61,7 @@ const LoginVeterinarios = ({ hanleAuth }) => {
                 <Accordion>
                     <Card border="dark" style={{ width: '30rem' }}>
                         <Card.Header>
-                            <CustomToggleVet eventKey="1"><img src={logo} className="App-logo"/></CustomToggleVet>
+                            <CustomToggleVet eventKey="1"><img src={logo} className="App-logo" /></CustomToggleVet>
 
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
@@ -73,7 +77,7 @@ const LoginVeterinarios = ({ hanleAuth }) => {
                                     <FormControl value={password2} name="password" onChange={handlePassword} type="password" aria-label="First name" />
                                 </InputGroup>
                                 {/*------Botón de iniciar sesión------*/}
-                                <Button variant="dark" onClick={btnLogin}>Iniciar Sesión</Button>{' '}
+                                <Button variant="dark" onClick={handleAuth}>Iniciar Sesión</Button>{' '}
 
                                 {/*------Botón Registrase------*/}
                                 <Button variant="dark" onClick={handleShow}> Registrarse </Button>{' '}
@@ -83,11 +87,11 @@ const LoginVeterinarios = ({ hanleAuth }) => {
                 </Accordion>
             </header>
             {/* Modal que carga formulario de registro */}
-            <Modal show={show} onHide={handleClose} size="lg">
+            <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>Registro Clientes</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><RegisterVet/></Modal.Body>
+                <Modal.Body><RegisterVet /></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Cerrar

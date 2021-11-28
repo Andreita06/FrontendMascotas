@@ -2,12 +2,11 @@ import Card from 'react-bootstrap/Card'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../logo-clientes.png';
 import { Accordion, Modal, useAccordionButton } from 'react-bootstrap'
 import RegisterClient from './RegisterClient'
-
-
+import AuthContext from '../context/AuthContext'
 
 function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
@@ -25,10 +24,14 @@ function CustomToggle({ children, eventKey }) {
 }
 
 
-const Login = ({ hanleAuth }) => {
+const Login = () => {
 
-    const [user, setUser] = useState(null);
-    const [password, setPassword] = useState(null);
+    //uso de contexto
+    const {handleAuth}= useContext(AuthContext);
+    //usar el hook useState para estados del componente
+
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleUser = (e) => {
         setUser(e.target.value);
@@ -38,12 +41,18 @@ const Login = ({ hanleAuth }) => {
         setPassword(e.target.value);
     }
 
+    const handleLogin= ()=>{
+        handleAuth(user, password);
+    }
+
     const btnLogin = () => {
-        hanleAuth(user, password);
+        // handleAuth(user, password);
+     
+
     }
 
     const btnRegistrarse = () => {
-        hanleAuth(user, password);
+        // handleAuth(user, password);
     }
 
     // Estados para el uso del modal
@@ -73,7 +82,7 @@ const Login = ({ hanleAuth }) => {
                                     <FormControl value={password} name="password" onChange={handlePassword} type="password" aria-label="First name" />
                                 </InputGroup>
                                 {/*------Botón de iniciar sesión------*/}
-                                <Button variant="dark" onClick={btnLogin}> Iniciar Sesión </Button>{' '}
+                                <Button variant="dark" onClick={handleLogin}> Iniciar Sesión </Button>{' '}
 
                                 {/*------Botón Registrase------*/}
                                 <Button variant="dark" onClick={handleShow}> Registrarse </Button>{' '}
@@ -84,7 +93,7 @@ const Login = ({ hanleAuth }) => {
                 </Accordion>
             </header>
             {/* Modal que carga formulario de registro */}
-            <Modal show={show} onHide={handleClose} size="lg">
+            <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>Registro Clientes</Modal.Title>
                 </Modal.Header>

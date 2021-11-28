@@ -13,7 +13,7 @@ const Footer = () => {
 
 <div className="App-footer">
     <div className="card-body">
-        <Container className='footer-container'>
+        <Container className='footer-container' id="contactos">
           <Row>
             <Col >Misión Tic 2021 - Copyright: PetVaccine www.petvaccine.com- info@petvaccine.com</Col>
             <Col >
