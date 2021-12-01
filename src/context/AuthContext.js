@@ -18,7 +18,11 @@ const AuthProvider = ({children})=>{
         
     }
 
-    const data= {auth, handleAuth};
+    const signOut=()=>{
+        setAuth(false);
+    }
+
+    const data= {auth, handleAuth, signOut};
 
     //jsx que devuelve con valores y propiedades
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>

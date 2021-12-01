@@ -7,11 +7,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import icono from '../icono.svg'
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../context/AuthContext';
 
 
 
 
 const Dashboard = () => {
+
+    let {signOut}=useContext(AuthContext);
+
 
 
     return (
@@ -38,7 +43,7 @@ const Dashboard = () => {
                             <Nav.Link className="links" href="#pet-data">Datos Mascotas</Nav.Link>
                             <Nav.Link className="links" href="#search">Consulta</Nav.Link>
                             <Nav.Link className="links" href="#contactos">Contactos</Nav.Link>
-                            <Nav.Link className="links" >Salir</Nav.Link>
+                            <Nav.Link className="links" onClick={signOut} >Salir</Nav.Link>
 
                         </Nav>
                     </Navbar.Collapse>
