@@ -4,9 +4,10 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import React, { useContext, useState } from 'react'
 import logo from '../logo-clientes.png';
-import { Accordion, Modal, useAccordionButton } from 'react-bootstrap'
-import RegisterClient from './RegisterClient'
+import { Accordion, useAccordionButton } from 'react-bootstrap'
+
 import AuthContext from '../context/AuthContext'
+import RegisterClient from './RegisterClient'
 
 function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
@@ -27,7 +28,7 @@ function CustomToggle({ children, eventKey }) {
 const Login = () => {
 
     //uso de contexto
-    const {handleAuth}= useContext(AuthContext);
+    const { handleAuth } = useContext(AuthContext);
     //usar el hook useState para estados del componente
 
     const [user, setUser] = useState("");
@@ -41,13 +42,13 @@ const Login = () => {
         setPassword(e.target.value);
     }
 
-    const handleLogin= ()=>{
+    const handleLogin = () => {
         handleAuth(user, password);
     }
 
     const btnLogin = () => {
         // handleAuth(user, password);
-     
+
 
     }
 
@@ -60,6 +61,7 @@ const Login = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     return (
         <>
 
@@ -92,21 +94,8 @@ const Login = () => {
                     </Card>
                 </Accordion>
             </header>
-            {/* Modal que carga formulario de registro */}
-            <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Registro Clientes</Modal.Title>
-                </Modal.Header>
-                <Modal.Body><RegisterClient/></Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cerrar
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Enviar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/* Modal con props */}
+            <RegisterClient show={show} handleClose={handleClose} />
         </>
     )
 }

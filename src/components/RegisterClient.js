@@ -1,21 +1,25 @@
-import React, { useState } from "react";
-import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, Col, Container, FloatingLabel, Form, Modal, Row } from "react-bootstrap";
+import AuthContext from "../context/AuthContext";
 import logoCliente from "../logo-clientes.png"
 
 
-const RegisterClient = () => {
+const RegisterClient = ({ show, handleClose }) => {
+
+
+    //Se desestructura y se llama la funcion que se va a usar?
+    const { handleRegister } = useContext(AuthContext);
 
     const objForm = {
-        firstname: "",
-        secondname: "",
-        firstsurname: "",
-        secondsurname: "",
-        id: "",
-        number: "",
-        adress: "",
-        cellphone: "",
-        email: "",
-        password: ""
+        primernombre: "",
+        segundonombre: "",
+        primerapellido: "",
+        segundoapellido: "",
+        identificacion: "",
+        direccion: "",
+        celular: "",
+        correo: "",
+        clave: ""
     }
 
     const [form, setForm] = useState(objForm);
@@ -29,92 +33,138 @@ const RegisterClient = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //llamar la funcion del contexto
+        handleRegister(form);
+        //limpieza
+        setForm(objForm)
+        //cerrar
+        handleClose();
 
     }
 
-
     return (
         <>
-            <div className="logomodal">
-                <img src={logoCliente} className="App-logo" />
-            </div>
-            <Form onSubmit={handleSubmit}>
-                <Row>
-                    <Col>
-                        <FloatingLabel htmlFor="firstname" label="Primer Nombre" className="forminput">
-                            <Form.Control
-                                value={form.firstname}
-                                onChange={handleForm}
-                                name="firstname" id="firstname" type="text" />
-                        </FloatingLabel>
 
-                        <FloatingLabel htmlFor="firstsurname" label="Primer Apellido" className="forminput">
-                            <Form.Control
-                                value={form.firstsurname}
-                                onChange={handleForm}
-                                name="firstsurname" id="firstsurname" type="text" />
-                        </FloatingLabel>
+            {/* Modal que carga formulario de registro */}
+            <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>Registro Clientes</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
-                        <FloatingLabel htmlFor="id" label="No. Identificación" className="forminput">
-                            <Form.Control
-                                value={form.id}
-                                onChange={handleForm}
-                                name="id" id="id" type="number" />
-                        </FloatingLabel>
+                    <Container>
 
-                        <FloatingLabel htmlFor="email" label="Correo Electronico" className="forminput">
-                            <Form.Control
-                                value={form.email}
-                                onChange={handleForm}
-                                name="email" id="email" type="email" />
-                        </FloatingLabel>
-                    </Col>
-                    <Col>
-                        <FloatingLabel htmlFor="secondname" label="Segundo Nombre" className="forminput">
-                            <Form.Control
-                                value={form.secondname}
-                                onChange={handleForm}
-                                name="secondname" id="secondname" type="text" />
-                        </FloatingLabel>
+                        <div className="logomodal">
+                            <img alt="logo" src={logoCliente} className="App-logo" />
+                        </div>
 
-                        <FloatingLabel htmlFor="secondsurname" label="Segundo Apellido" className="forminput">
-                            <Form.Control
-                                value={form.secondsurname}
-                                onChange={handleForm}
-                                name="secodnsurname" id="secondsurname" type="text" />
-                        </FloatingLabel>
+                        <Form onSubmit={handleSubmit}>
 
-                        <FloatingLabel htmlFor="adress" label="Dirección Residencia" className="forminput">
-                            <Form.Control
-                                value={form.adress}
-                                onChange={handleForm}
-                                name="adress" id="adress" type="text" />
-                        </FloatingLabel>
+                            <Row>
+                                <Col>
+                                    <FloatingLabel htmlFor="primernombre" label="Primer Nombre" className="forminput">
+                                        <Form.Control
+                                            value={form.primernombre}
+                                            onChange={handleForm}
+                                            name="primernombre" id="primernombre" type="text" />
+                                    </FloatingLabel>
 
-                        <FloatingLabel htmlFor="cellphone" label="Celular" className="forminput">
-                            <Form.Control
-                                value={form.cellphone}
-                                onChange={handleForm}
-                                name="cellphone" id="cellphone" type="text" />
-                        </FloatingLabel>
+                                    <FloatingLabel htmlFor="primerapellido" label="Primer Apellido" className="forminput">
+                                        <Form.Control
+                                            value={form.primerapellido}
+                                            onChange={handleForm}
+                                            name="primerapellido" id="primerapellido" type="text" />
+                                    </FloatingLabel>
 
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FloatingLabel htmlFor="password" label="Contraseña" className="forminputpass">
-                            <Form.Control
-                                value={form.password}
-                                onChange={handleForm}
-                                name="password" id="password" type="password" />
-                        </FloatingLabel>
-                    </Col>
-                </Row>
-            </Form>
+                                    <FloatingLabel htmlFor="identificacion" label="No. Identificación" className="forminput">
+                                        <Form.Control
+                                            value={form.identificacion}
+                                            onChange={handleForm}
+                                            name="identificacion" id="identificacion" type="number" />
+                                    </FloatingLabel>
+
+                                    <FloatingLabel htmlFor="correo" label="Correo Electronico" className="forminput">
+                                        <Form.Control
+                                            value={form.correo}
+                                            onChange={handleForm}
+                                            name="correo" id="correo" type="email" />
+                                    </FloatingLabel>
+
+                                </Col>
+                                <Col>
+
+                                    <FloatingLabel htmlFor="segundonombre" label="Segundo Nombre" className="forminput">
+                                        <Form.Control
+                                            value={form.segundonombre}
+                                            onChange={handleForm}
+                                            name="segundonombre" id="segundonombre" type="text" />
+                                    </FloatingLabel>
+
+                                    <FloatingLabel htmlFor="segundoapellido" label="Segundo Apellido" className="forminput">
+                                        <Form.Control
+                                            value={form.segundoapellido}
+                                            onChange={handleForm}
+                                            name="segundoapellido" id="segundoapellido" type="text" />
+                                    </FloatingLabel>
+
+                                    <FloatingLabel htmlFor="direccion" label="Dirección Residencia" className="forminput">
+                                        <Form.Control
+                                            value={form.direccion}
+                                            onChange={handleForm}
+                                            name="direccion" id="direccion" type="text" />
+                                    </FloatingLabel>
+
+                                    <FloatingLabel htmlFor="celular" label="Celular" className="forminput">
+                                        <Form.Control
+                                            value={form.celular}
+                                            onChange={handleForm}
+                                            name="celular" id="celular" type="text" />
+                                    </FloatingLabel>
+                                </Col>
+
+
+
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <FloatingLabel htmlFor="clave" label="Contraseña" className="forminputpass">
+                                        <Form.Control
+                                            value={form.clave}
+                                            onChange={handleForm}
+                                            name="clave" id="clave" type="password" />
+                                    </FloatingLabel>
+                                </Col>
+                            </Row>
+
+
+                        </Form>
+
+
+                        <div className="botform ">
+                            <Button style={{ margin: "5px" }} variant="primary" onClick={handleSubmit}>
+                                Enviar
+                            </Button>
+
+                            <Button style={{ margin: "5px" }} variant="secondary" onClick={handleClose}>
+                                Cerrar
+                            </Button>
+                        </div>
+
+                    </Container>
+
+
+
+
+                </Modal.Body>
+            </Modal>
+
+
+
 
 
         </>
     )
 }
 
-export default RegisterClient
+
+export default RegisterClient;
+
