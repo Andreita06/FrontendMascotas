@@ -18,16 +18,16 @@ const AuthProvider = ({ children }) => {
                 },
                  body: JSON.stringify(objUser)
             }).then(async (resp)=>{
-                // if(resp.status=== 201){
+                if(resp.status=== 201){
                     let json= await resp.json();
                     let token = json.token;
                     //espacio de memoria en el navegador donde se puede guardar info.Para persistencia. Nombre y valor
                     localStorage.setItem('token', token);
                     // setAuth(true);
                     console.log(json)
-                // }else{
-                //     alert("Credentials invalid");
-                // }
+                }else{
+                    alert("Credentials invalid");
+                }
 
 
             }).catch(error=>{

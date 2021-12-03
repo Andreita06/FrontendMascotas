@@ -65,28 +65,32 @@ const RegisterClient = ({ show, handleClose }) => {
                                         <Form.Control
                                             value={form.primernombre}
                                             onChange={handleForm}
-                                            name="primernombre" id="primernombre" type="text" />
+                                            name="primernombre" id="primernombre" type="text"
+                                            required />
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="primerapellido" label="Primer Apellido" className="forminput">
                                         <Form.Control
                                             value={form.primerapellido}
                                             onChange={handleForm}
-                                            name="primerapellido" id="primerapellido" type="text" />
+                                            name="primerapellido" id="primerapellido" type="text" 
+                                            required/>
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="identificacion" label="No. Identificación" className="forminput">
                                         <Form.Control
                                             value={form.identificacion}
                                             onChange={handleForm}
-                                            name="identificacion" id="identificacion" type="number" />
+                                            name="identificacion" id="identificacion" type="number" 
+                                            required/>
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="correo" label="Correo Electronico" className="forminput">
                                         <Form.Control
                                             value={form.correo}
                                             onChange={handleForm}
-                                            name="correo" id="correo" type="email" />
+                                            name="correo" id="correo" type="email" 
+                                            required/>
                                     </FloatingLabel>
 
                                 </Col>
@@ -96,28 +100,32 @@ const RegisterClient = ({ show, handleClose }) => {
                                         <Form.Control
                                             value={form.segundonombre}
                                             onChange={handleForm}
-                                            name="segundonombre" id="segundonombre" type="text" />
+                                            name="segundonombre" id="segundonombre" type="text" 
+                                            required/>
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="segundoapellido" label="Segundo Apellido" className="forminput">
                                         <Form.Control
                                             value={form.segundoapellido}
                                             onChange={handleForm}
-                                            name="segundoapellido" id="segundoapellido" type="text" />
+                                            name="segundoapellido" id="segundoapellido" type="text" 
+                                            required/>
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="direccion" label="Dirección Residencia" className="forminput">
                                         <Form.Control
                                             value={form.direccion}
                                             onChange={handleForm}
-                                            name="direccion" id="direccion" type="text" />
+                                            name="direccion" id="direccion" type="text"
+                                            required />
                                     </FloatingLabel>
 
                                     <FloatingLabel htmlFor="celular" label="Celular" className="forminput">
                                         <Form.Control
                                             value={form.celular}
                                             onChange={handleForm}
-                                            name="celular" id="celular" type="text" />
+                                            name="celular" id="celular" type="text" 
+                                            required/>
                                     </FloatingLabel>
                                 </Col>
 
@@ -130,7 +138,8 @@ const RegisterClient = ({ show, handleClose }) => {
                                         <Form.Control
                                             value={form.clave}
                                             onChange={handleForm}
-                                            name="clave" id="clave" type="password" />
+                                            name="clave" id="clave" type="password" 
+                                            required/>
                                     </FloatingLabel>
                                 </Col>
                             </Row>
